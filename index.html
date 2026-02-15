@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawfect Bites | Healthy Treats. Happy Tails.</title>
+    <meta name="description" content="Premium, natural dog treats made with human-grade ingredients.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* -----------------------------------------------------------
+           1. ROOT VARIABLES & RESET
+        ----------------------------------------------------------- */
+        :root {
+            --cream: #FFF8F0;
+            --brown: #8B5E3C;
+            --dark-brown: #5D3A20;
+            --pink: #FF6F91;
+            --green: #4CAF50;
+            --white: #FFFFFF;
+            --gray: #F4F4F4;
+            --shadow: 0 10px 30px rgba(139, 94, 60, 0.15);
+            --font-head: 'Baloo 2', cursive;
+            --font-body: 'Poppins', sans-serif;
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--cream);
+            color: var(--dark-brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-head);
+            font-weight: 800;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* -----------------------------------------------------------
+           2. UTILITIES & ANIMATIONS
+        ----------------------------------------------------------- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes wag {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .wag-hover:hover {
+            animation: wag 0.5s ease infinite;
+        }
+
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Scroll Reveal Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -----------------------------------------------------------
+           3. UI ELEMENTS (Buttons, Dividers)
+        ----------------------------------------------------------- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--brown);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-brown);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: var(--pink);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e05575;
+            transform: translateY(-3px);
+        }
+
+        .bone-btn {
+            background-color: var(--green);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bone-btn:hover {
+            background-color: #3d8b40;
+            animation: pop 0.3s ease;
+        }
+
+        .section-divider {
+            height: 50px;
+            background-image: radial-gradient(var(--brown) 15%, transparent 16%),
+                              radial-gradient(var(--brown) 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            opacity: 0.1;
+            margin: 20px 0;
+        }
+
+        /* -----------------------------------------------------------
+           4. LOADER
+        ----------------------------------------------------------- */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--cream);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease;
+        }
+        .loader-paw {
+            font-size: 4rem;
+            color: var(--brown);
+            animation: pop 1s infinite;
+        }
+
+        /* -----------------------------------------------------------
+           5. HEADER & NAV
+        ----------------------------------------------------------- */
+        header {
+            background-color: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--brown);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i { color: var(--pink); }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--dark-brown);
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--pink); }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--brown);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--pink);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        /* -----------------------------------------------------------
+           6. HERO SECTION
+        ----------------------------------------------------------- */
+        .hero {
+            position: relative;
+            padding: 100px 0 60px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--dark-brown);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-img-container {
+            position: relative;
+        }
+        
+        .hero-img {
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            transform: rotate(2deg);
+            border: 5px solid white;
+        }
+
+        /* -----------------------------------------------------------
+           7. WHY CHOOSE US
+        ----------------------------------------------------------- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--pink);
+            margin-bottom: 15px;
+        }
+
+        /* -----------------------------------------------------------
+           8. PRODUCTS GRID
+        ----------------------------------------------------------- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 94, 60, 0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            background-color: #f0f0f0; /* Fallback */
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .stars {
+            color: #FFC107;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--green);
+            font-size: 1.2rem;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+        }
+
+        /* -----------------------------------------------------------
+           9. INGREDIENTS
+        ----------------------------------------------------------- */
+        .ingredients-section {
+            background-color: white;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .ingredient-card {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed var(--brown);
+            border-radius: var(--radius);
+        }
+
+        .ing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--brown);
+        }
+
+        /* -----------------------------------------------------------
+           10. TESTIMONIALS & STATS
+        ----------------------------------------------------------- */
+        .review-card {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid rgba(139, 94, 60, 0.1);
+        }
+        
+        .reviews-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .stats-banner {
+            background: var(--brown);
+            color: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 { font-size: 2.5rem; color: var(--cream); }
+
+        /* -----------------------------------------------------------
+           11. SUBSCRIPTION
+        ----------------------------------------------------------- */
+        .subscribe-section {
+            background: var(--green);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscribe-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+        }
+
+        /* -----------------------------------------------------------
+           12. FAQ
+        ----------------------------------------------------------- */
+        .faq-item {
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #fafafa;
+            color: #666;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 200px; /* arbitrary height */
+        }
+
+        /* -----------------------------------------------------------
+           13. FOOTER
+        ----------------------------------------------------------- */
+        footer {
+            background: var(--dark-brown);
+            color: var(--cream);
+            padding-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            background: rgba(0,0,0,0.2);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover { color: var(--pink); }
+
+        /* -----------------------------------------------------------
+           14. SHOPPING CART SIDEBAR
+        ----------------------------------------------------------- */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0; right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 2001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .cart-open .cart-overlay { opacity: 1; visibility: visible; }
+        .cart-open .cart-sidebar { transform: translateX(0); }
+
+        .cart-header {
+            padding: 20px;
+            background: var(--cream);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .qty-btn {
+            background: var(--gray);
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: var(--gray);
+            border-top: 1px solid #ddd;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .total-row {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--brown);
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        /* -----------------------------------------------------------
+           15. TOAST NOTIFICATION
+        ----------------------------------------------------------- */
+        #toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--dark-brown);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 50px; }
+            .hero-buttons { justify-content: center; }
+            .nav-links { display: none; } /* Simplified mobile nav for demo */
+            .hero-text h1 { font-size: 2.5rem; }
+            .stats-banner { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-paw"><i class="fas fa-paw"></i></div>
+        <h2 style="color: var(--brown); margin-top: 10px;">Pawfect Bites</h2>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo wag-hover">
+                <i class="fas fa-dog"></i>
+                Pawfect Bites
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Treats</a></li>
+                    <li><a href="#ingredients">Ingredients</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-basket"></i>
+                <span class="cart-badge" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero container">
+        <div class="hero-text reveal">
+            <h1>Treat Them Like <span style="color: var(--pink);">Family.</span></h1>
+            <p>100% Natural, Vet-Approved, Tail-Wagging Goodness. Because your best friend deserves the best bites.</p>
+            <div class="hero-buttons">
+                <a href="#shop" class="btn btn-primary"><i class="fas fa-bone"></i> Shop Treats</a>
+                <a href="#ingredients" class="btn btn-secondary">View Ingredients</a>
+            </div>
+        </div>
+        <div class="hero-img-container reveal">
+            <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Happy Dog" class="hero-img float-anim">
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Features -->
+    <section class="section-padding" style="background: white;">
+        <div class="container">
+            <div class="text-center reveal">
+                <h2 style="color: var(--brown);">Why Choose Us?</h2>
+                <p>Simple ingredients, happy dogs.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item reveal">
+                    <i class="fas fa-carrot feature-icon"></i>
+                    <h4>Human-Grade</h4>
+                    <p>Ingredients you'd eat yourself.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <i class="fas fa-ban feature-icon"></i>
+                    <h4>No Additives</h4>
+                    <p>Zero fillers or artificial preservatives.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <i class="fas fa-user-md feature-icon"></i>
+                    <h4>Vet Approved</h4>
+                    <p>Formulated by pet nutrition experts.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <i class="fas fa-clock feature-icon"></i>
+                    <h4>Fresh Weekly</h4>
+                    <p>Baked in small batches every week.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section id="shop" class="section-padding">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 40px;">
+                <h2>Featured <span style="color: var(--pink);">Treats</span></h2>
+                <p>Pick your pup's new favorite snack.</p>
+            </div>
+            <div class="product-grid" id="product-container">
+                <!-- Products injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingredients -->
+    <section id="ingredients" class="section-padding ingredients-section">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 40px;">
+                <h2>What's Inside <span style="color: var(--green);">Matters</span></h2>
+                <p>Transparency is our key ingredient.</p>
+            </div>
+            <div class="ingredients-grid">
+                <div class="ingredient-card reveal">
+                    <div class="ing-icon">🥜</div>
+                    <h4>Peanut Butter</h4>
+                    <p>Protein & Healthy Fats</p>
+                </div>
+                <div class="ingredient-card reveal">
+                    <div class="ing-icon">🎃</div>
+                    <h4>Pumpkin</h4>
+                    <p>Digestive Health</p>
+                </div>
+                <div class="ingredient-card reveal">
+                    <div class="ing-icon">🐟</div>
+                    <h4>Salmon</h4>
+                    <p>Omega-3 for Shiny Coat</p>
+                </div>
+                <div class="ingredient-card reveal">
+                    <div class="ing-icon">🌾</div>
+                    <h4>Oats</h4>
+                    <p>Fiber & Energy</p>
+                </div>
+                <div class="ingredient-card reveal">
+                    <div class="ing-icon">🫐</div>
+                    <h4>Blueberries</h4>
+                    <p>Antioxidant Boost</p>
+                </div>
+            </div>
+            
+            <!-- Stats Banner -->
+            <div class="stats-banner reveal">
+                <div class="stat-item text-center">
+                    <h3 id="count-dogs">0</h3>
+                    <p>Happy Dogs Served</p>
+                </div>
+                <div class="stat-item text-center">
+                    <h3>100%</h3>
+                    <p>Natural Ingredients</p>
+                </div>
+                <div class="stat-item text-center">
+                    <h3>50+</h3>
+                    <p>Shelter Donations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 40px; color: var(--brown);">Pawsitive Feedback 🐾</h2>
+            <div class="reviews-wrapper">
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p class="italic">"My dog goes crazy for these treats! Clean ingredients and fast delivery. Finally something that doesn't upset his tummy."</p>
+                    <h5 style="margin-top: 15px;">– Sarah M.</h5>
+                </div>
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p class="italic">"Finally treats I can trust. No weird chemicals, just good food. The packaging is adorable too!"</p>
+                    <h5 style="margin-top: 15px;">– Jason R.</h5>
+                </div>
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p class="italic">"My puppy loves the training minis! They are the perfect size and not too crumbly in my pocket."</p>
+                    <h5 style="margin-top: 15px;">– Kelly T.</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription -->
+    <section class="section-padding subscribe-section">
+        <div class="container reveal">
+            <h2>Never Run Out of Treats</h2>
+            <p>Subscribe & Save 10% on every order. Cancel anytime.</p>
+            <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing! 🐾');">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary" style="border: 2px solid white;">Join Pack</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- About & FAQ -->
+    <section id="about" class="section-padding" style="background: white;">
+        <div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
+            <div class="reveal">
+                <h3 style="color: var(--brown); margin-bottom: 20px;">Our Story</h3>
+                <p>Pawfect Bites was created by dog lovers who wanted healthier options for their furry family members. Tired of reading labels full of unpronounceable chemicals, we started baking in our kitchen.</p>
+                <br>
+                <p>Every recipe is carefully crafted with real ingredients and no artificial junk. Because they aren't just pets, they're family.</p>
+                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" style="margin-top: 20px; border-radius: var(--radius);" alt="Dog eating">
+            </div>
+            <div class="reveal">
+                <h3 style="color: var(--brown); margin-bottom: 20px;">Frequently Asked Questions</h3>
+                <div class="faq-item">
+                    <div class="faq-question">Are your treats grain-free? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Yes! We offer a wide range of grain-free options like our Sweet Potato Chews and Beef Nuggets.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are they safe for puppies? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Absolutely. We have specific 'Puppy Training Minis' designed for smaller teeth and sensitive tummies.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How long do they stay fresh? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Since we use no preservatives, they last about 6 weeks in a cool, dry place. Or freeze them for up to 3 months!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer refunds? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">If your pup doesn't love them, let us know within 30 days and we'll refund your order. No questions asked.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h3>Pawfect Bites</h3>
+                <p>Healthy Treats. Happy Tails.</p>
+                <div class="social-icons" style="margin-top: 15px;">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>hello@pawfectbites.com</p>
+                <p>(555) 987-PAWS</p>
+                <p>123 Wagging Tail Blvd, Dogtown</p>
+            </div>
+            <div>
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns Policy</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Pawfect Bites. All rights reserved. Made with 🐾 love.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-open-target" id="cart-container">
+        <div class="cart-overlay" onclick="toggleCart()"></div>
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Your Cart 🐾</h3>
+                <i class="fas fa-times" onclick="toggleCart()" style="cursor: pointer; font-size: 1.2rem;"></i>
+            </div>
+            <div class="cart-items" id="cart-items-wrapper">
+                <!-- Cart items injected here -->
+                <div class="text-center" style="margin-top: 50px; color: #999;">
+                    <i class="fas fa-bone" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                    <p>Your cart is empty.</p>
+                    <button onclick="toggleCart()" class="btn btn-primary" style="margin-top: 20px; font-size: 0.9rem;">Start Shopping</button>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (8%)</span>
+                    <span id="cart-tax">$0.00</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script>
+        // -----------------------------------------------------------
+        // 1. DATA
+        // -----------------------------------------------------------
+        const products = [
+            { id: 1, name: "Peanut Butter Paw Crunch", price: 14.99, img: "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "Crunchy delight rich in protein." },
+            { id: 2, name: "Chicken & Pumpkin Bites", price: 16.99, img: "https://images.unsplash.com/photo-1605639156481-244775d6f803?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "Gentle on tummies, big on taste." },
+            { id: 3, name: "Sweet Potato Chews", price: 12.99, img: "https://images.unsplash.com/photo-1623366302587-bca233d267f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "Natural dental cleaning action." },
+            { id: 4, name: "Beef Protein Nuggets", price: 18.99, img: "https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "High energy for active dogs." },
+            { id: 5, name: "Blueberry Oat Cookies", price: 15.99, img: "https://images.unsplash.com/photo-1558929996-da64ba858215?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "Antioxidant-rich baked goodness." },
+            { id: 6, name: "Salmon Omega Treats", price: 19.99, img: "https://images.unsplash.com/photo-1535930749574-1399327ce78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "For shiny coats and healthy skin." },
+            { id: 7, name: "Puppy Training Minis", price: 13.99, img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "Perfect size for learning tricks." },
+            { id: 8, name: "Dental Clean Bones", price: 17.99, img: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80", desc: "Fresh breath and clean teeth." }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('pawfectCart')) || [];
+
+        // -----------------------------------------------------------
+        // 2. RENDER PRODUCTS
+        // -----------------------------------------------------------
+        function renderProducts() {
+            const container = document.getElementById('product-container');
+            container.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name}" class="product-img">
+                    <div class="product-info">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <h3>${p.name}</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">${p.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">$${p.price}</span>
+                        <button class="btn bone-btn" onclick="addToCart(${p.id})">
+                            <i class="fas fa-bone"></i> Add
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // -----------------------------------------------------------
+        // 3. CART FUNCTIONS
+        // -----------------------------------------------------------
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCart();
+            showToast(`Added ${product.name} to cart! 🐾`);
+            
+            // Open cart slightly to show action then close (optional, sticking to toast for now)
+             document.body.classList.add('cart-open');
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                updateCart();
+            }
+        }
+
+        function updateCart() {
+            localStorage.setItem('pawfectCart', JSON.stringify(cart));
+            renderCartItems();
+            
+            // Update Badge
+            const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            
+            // Update Totals
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            const tax = subtotal * 0.08;
+            const total = subtotal + tax;
+
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-tax').innerText = `$${tax.toFixed(2)}`;
+            document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function renderCartItems() {
+            const wrapper = document.getElementById('cart-items-wrapper');
+            
+            if (cart.length === 0) {
+                wrapper.innerHTML = `
+                <div class="text-center" style="margin-top: 50px; color: #999;">
+                    <i class="fas fa-bone" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                    <p>Your cart is empty.</p>
+                    <button onclick="toggleCart()" class="btn btn-primary" style="margin-top: 20px; font-size: 0.9rem;">Start Shopping</button>
+                </div>`;
+                return;
+            }
+
+            wrapper.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div style="flex:1;">
+                        <h4 style="font-size: 0.9rem;">${item.name}</h4>
+                        <div style="color: var(--green); font-weight: bold;">$${(item.price * item.qty).toFixed(2)}</div>
+                        <div class="item-controls">
+                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            document.body.classList.toggle('cart-open');
+        }
+        
+        function checkout() {
+            if(cart.length === 0) return;
+            alert('Proceeding to checkout... (Demo Only) 🐶');
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // -----------------------------------------------------------
+        // 4. UI UTILITIES
+        // -----------------------------------------------------------
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas fa-paw" style="color: var(--pink)"></i> ${msg}`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s reverse forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Counter Logic
+        function animateCounter(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let current = start;
+            const range = end - start;
+            const increment = end > start ? 250 : -1;
+            const step = Math.abs(Math.floor(duration / (range / 250)));
+            const timer = setInterval(() => {
+                current += increment;
+                obj.textContent = current.toLocaleString() + '+';
+                if (current >= end) {
+                    obj.textContent = end.toLocaleString() + '+';
+                    clearInterval(timer);
+                }
+            }, step);
+        }
+
+        // -----------------------------------------------------------
+        // 5. INITIALIZATION
+        // -----------------------------------------------------------
+        window.addEventListener('load', () => {
+            // Hide Loader
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
+
+            renderProducts();
+            updateCart();
+        });
+
+        // Scroll Reveal
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+
+            // Trigger counter when stats section is visible
+            const statsSection = document.querySelector('.stats-banner');
+            if (statsSection.getBoundingClientRect().top < windowHeight && !statsSection.classList.contains('counted')) {
+                statsSection.classList.add('counted');
+                animateCounter("count-dogs", 0, 25000, 2000);
+            }
+        });
+
+    </script>
+</body>
+</html>
